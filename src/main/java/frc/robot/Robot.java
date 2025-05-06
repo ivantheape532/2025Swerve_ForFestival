@@ -5,7 +5,6 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
 
 public class Robot extends TimedRobot {
-  @SuppressWarnings("unused")
   private RobotContainer m_robotContainer;
   // private Double[] m_ListArm=new Double[40];
   // private Double[] m_ListTy=new Double[40];

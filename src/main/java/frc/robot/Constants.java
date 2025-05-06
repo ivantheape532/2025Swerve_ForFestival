@@ -16,7 +16,6 @@ import frc.robot.Subsystems.ImprovedCommandXboxController;
  * <p>It is advised to statically import this class (or one of its inner classes) wherever the
  * constants are needed, to reduce verbosity.
  */
-@SuppressWarnings("unused") //非得加个这个
 public final class Constants 
 {
     public static final class SemiAutoConstants{
@@ -78,7 +77,7 @@ public final class Constants
         public static final double piviotKA = (0.44473 / 12);
 
         // Pigeon Port
-        public static final int PigeonIMUPort = 17;
+        public static final int PigeonIMUPort = 9;
 
         public static double kDriveMotorMaxOutput = 1;
         public static double kPivotMotorMaxOutput = 1;
@@ -137,7 +136,7 @@ public final class Constants
     
         public static double kPeriod = 20;//The unit is 20_ms
     
-        public static double kMaxSpeed = 4;//The unit is meters per second 每个轮子的可以达到的最大转速，单位是m/s
+        public static double kMaxSpeed = 5;//The unit is meters per second 每个轮子的可以达到的最大转速，单位是m/s
     
        
         public static final BetterSwerveKinematics swerveKinematics = new BetterSwerveKinematics(//define the position of each swervemodule by creating a coordinate system

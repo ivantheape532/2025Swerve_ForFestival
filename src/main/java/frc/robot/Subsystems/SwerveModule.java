@@ -2,7 +2,7 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.Subsystems.Chassis;
+package frc.robot.Subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.DemandType;
@@ -39,7 +39,7 @@ public class SwerveModule extends SubsystemBase {
   private MotorOutputConfigs m_MotorOutputConfigs =new MotorOutputConfigs();
   final DutyCycleOut m_DutyCycleOut = new DutyCycleOut(0);
   
-  // final VelocityVoltage m_request = new VelocityVoltage(0,0,false,0,0,true, true, true);
+  // TODO: final VelocityVoltage m_request = new VelocityVoltage(0,0,false,0,0,true, true, true);
   final VelocityVoltage m_request = new VelocityVoltage(0);
   
   SimpleMotorFeedforward feedforward = new SimpleMotorFeedforward(Constants.SwerveConstants.driveKS, Constants.SwerveConstants.driveKV, Constants.SwerveConstants.driveKA);
