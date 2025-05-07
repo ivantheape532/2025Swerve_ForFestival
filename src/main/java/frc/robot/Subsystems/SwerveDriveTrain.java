@@ -101,7 +101,7 @@ public class SwerveDriveTrain extends SubsystemBase {
 
     /** TODO: The coordinate system may be wrong 
      * 
-     * Mine right. ——zyf 2025.5.7
+     * You're right.10 ——zyf 2025.5.7
     */ 
     swerve_modules_[0] = new SwerveModule(3, 4, true,  false, -1660,  false, false);//front left
     swerve_modules_[1] = new SwerveModule(7, 8, true, false, 165, true, true);//front right
@@ -149,6 +149,7 @@ public class SwerveDriveTrain extends SubsystemBase {
  * 这个是为了兼容旧代码蔡保留的，晚点删掉
  * 
  *  TODO(zyf): 所以我怎么改？ ——zyf 2025.5.7
+ *  TODO(zyf): 貌似不用改了 能动。 ——zyf 2025.5.7
  * @param desiredStates
  */
   public void SetModuleStates(SwerveModuleState[] desiredStates){
