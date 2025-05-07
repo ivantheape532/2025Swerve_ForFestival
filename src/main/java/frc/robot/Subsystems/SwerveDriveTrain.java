@@ -99,7 +99,10 @@ public class SwerveDriveTrain extends SubsystemBase {
     addShuffleboardDebug();
     gyro = new Pigeon2(SwerveConstants.PigeonIMUPort);
 
-    // TODO: The coordinate system may be wrong 
+    /** TODO: The coordinate system may be wrong 
+     * 
+     * Mine right. ——zyf 2025.5.7
+    */ 
     swerve_modules_[0] = new SwerveModule(3, 4, true,  false, -1660,  false, false);//front left
     swerve_modules_[1] = new SwerveModule(7, 8, true, false, 165, true, true);//front right
     swerve_modules_[2] =new SwerveModule(5, 6, true, false, 1011,  false, false);//back left
@@ -145,7 +148,7 @@ public class SwerveDriveTrain extends SubsystemBase {
 /**
  * 这个是为了兼容旧代码蔡保留的，晚点删掉
  * 
- *  TODO(zyf): 所以我该删吗？ ——zyf 2025.5.7
+ *  TODO(zyf): 所以我怎么改？ ——zyf 2025.5.7
  * @param desiredStates
  */
   public void SetModuleStates(SwerveModuleState[] desiredStates){
@@ -161,7 +164,7 @@ public class SwerveDriveTrain extends SubsystemBase {
 }
 
       /**
-     * What the module states should be in hold mode. The wheels will be put in an X pattern to prevent the robot from moving.
+       * TODO: * What the module states should be in hold mode. The wheels will be put in an X pattern to prevent the robot from moving.
      * <p>
      * 0 -> Left Front
      * <p>
@@ -171,6 +174,7 @@ public class SwerveDriveTrain extends SubsystemBase {
      * <p>
      * 3 -> Right Back
      */
+
     public static final SwerveModuleState[] HOLD_MODULE_STATES = {
       new SwerveModuleState(0, Rotation2d.fromDegrees(-45)),
       new SwerveModuleState(0, Rotation2d.fromDegrees(-45)),
