@@ -1,7 +1,7 @@
-package frc.robot.subsystems;
-import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+package frc.robot.Subsystems;
+import edu.wpi.first.wpilibj.XboxController;
 
-public class ImprovedCommandXboxController extends CommandXboxController {
+public class ImprovedCommandXboxController extends XboxController {
     /** Represents a digital button on an XboxController. */
     public enum Button {
         kAutoButton(0),
@@ -61,6 +61,7 @@ public class ImprovedCommandXboxController extends CommandXboxController {
     public ImprovedCommandXboxController(final int port) {
         super(port);
         m_triggerThreshold = 0.5;
+        //TODO Auto-generated constructor stub
     }
     public ImprovedCommandXboxController(final int port, final double _triggerThreshold) {
         super(port);
@@ -95,7 +96,8 @@ public class ImprovedCommandXboxController extends CommandXboxController {
      * @return The state of the button.
      */
     public boolean getButton(int button){
-        if(button==Button.kAutoButton.value) {
+        if(button==Button.kAutoButton.value)
+        {
             return true;
         }
         if(button == Button.kLeftTrigger.value){
@@ -104,32 +106,6 @@ public class ImprovedCommandXboxController extends CommandXboxController {
         if(button == Button.kRightTrigger.value){
             return getRightTrigger();
         }
-        return getHID().getRawButton(button);
+        return getRawButton(button);
     }
-
-    public boolean getButton(Button button){
-        return getButton(button.value);
-    }
-
-    /**
-     * THIS DOES NOT APPLY TO AUTOBUTTON OR TRIGGERS!
-     * @param button
-     * @return
-     */
-    public boolean getButtonPressed(int button){
-        return getHID().getRawButtonPressed(button);
-    }
-
-    /**
-     * THIS DOES NOT APPLY TO TRIGGERS!
-     * @param button
-     * @return
-     */
-    public boolean getButtonPressed(Button button){
-        return getButtonPressed(button.value);
-    }
-
-    // public ChassisSpeeds getDesiredRelativeSpeeds(){
-    //     return new ChassisSpeeds(this.getLeftY(), this.getLeftX(), -this.getRightX() * 10.);
-    // }
 }

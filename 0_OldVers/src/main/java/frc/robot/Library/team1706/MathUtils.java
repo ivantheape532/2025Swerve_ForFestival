@@ -1,6 +1,5 @@
 package frc.robot.Library.team1706;
 
-import edu.wpi.first.math.geometry.Translation2d;
 import frc.robot.Constants.*;
 
 /**
@@ -33,21 +32,6 @@ public class MathUtils {
     return Math.signum(input) * Math.pow(input, 2);
   }
 
-  public static double signedPow(double a, double b) {
-    return Math.signum(a) * Math.pow(Math.abs(a), b);
-  }
-
-  /**
-   * Takes an input value and squares it, but retains the sign. IE negative
-   * numbers will remain negative.
-   * 
-   * @param input is the number to perform the transform on
-   * @return the transformed input value
-   */
-  public static Translation2d signedSquare(Translation2d input) {
-    return input.times(input.getNorm());
-  }
-
   /**
    * Applies a simple deadband to input values between -1.0 and 1.0. Makes use of
    * the deadband constants stored in the constants
@@ -68,18 +52,4 @@ public class MathUtils {
     }
   }
 
-  /**
-   * Takes an input value and squares it, but retains the sign. IE negative
-   * numbers will remain negative.
-   * 
-   * @param input is the number to perform the transform on
-   * @return the transformed input value
-   */
-  public static Translation2d applyDeadband(Translation2d input) {
-    if(input.getNorm()>DriveConstants.kOuterDeadband)
-    {
-      input=input.div(input.getNorm());
-    }
-    return input.getNorm()>DriveConstants.kInnerDeadband?input:new Translation2d();
-  }
 }
