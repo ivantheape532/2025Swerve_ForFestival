@@ -60,7 +60,7 @@ public class SwerveDriveTrain extends SubsystemBase {
 
   double preverror;
   double responsetime = 0.02;
-  int i = 1;
+  // int i = 1;
   double HEAD_P = 0.01;
   double HEAD_I = 0;
   double HEAD_D = 0;
@@ -103,6 +103,8 @@ public class SwerveDriveTrain extends SubsystemBase {
      * 
      * You're right.10 ——zyf 2025.5.7
     */ 
+
+     //TODO:Check if all ports are correct.
     swerve_modules_[0] = new SwerveModule(3, 4, true,  false, -1660,  false, false);//front left
     swerve_modules_[1] = new SwerveModule(7, 8, true, false, 165, true, true);//front right
     swerve_modules_[2] =new SwerveModule(5, 6, true, false, 1011,  false, false);//back left
@@ -202,7 +204,7 @@ public class SwerveDriveTrain extends SubsystemBase {
   };
 
   public void setSWERVE_MODULE_STATE_FORWARD(){
-    //SetModuleStates(SWERVE_MODULE_STATE_FORWARD); //TODO
+    // SetModuleStates(SWERVE_MODULE_STATE_FORWARD); //TODO
   }
 
   public void setHOLD_MODULE_STATES(){

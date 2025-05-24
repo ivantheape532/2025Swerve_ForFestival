@@ -1,8 +1,8 @@
-package frc.robot.Subsystems;
-import edu.wpi.first.wpilibj.XboxController;
+package frc.robot.subsystems;
+import edu.wpi.first.wpilibj.Joystick;
 
-public class ImprovedCommandXboxController extends XboxController {
-    /** Represents a digital button on an XboxController. */
+public class ImprovedCommand3DController extends Joystick {
+    /** Represents a digital button on an Joystick. */
     public enum Button {
         kAutoButton(0),
         /** Left bumper. */
@@ -58,12 +58,12 @@ public class ImprovedCommandXboxController extends XboxController {
         }
     }
     private double m_triggerThreshold = 0.0;
-    public ImprovedCommandXboxController(final int port) {
+    public ImprovedCommand3DController(final int port) {
         super(port);
         m_triggerThreshold = 0.5;
         //TODO Auto-generated constructor stub
     }
-    public ImprovedCommandXboxController(final int port, final double _triggerThreshold) {
+    public ImprovedCommand3DController(final int port, final double _triggerThreshold) {
         super(port);
         m_triggerThreshold = _triggerThreshold;
     }
@@ -72,17 +72,17 @@ public class ImprovedCommandXboxController extends XboxController {
      *
      * @return The axis of the trigger is greater than the trigger threshold
      */
-    public boolean getLeftTrigger(){
-        return getLeftTriggerAxis() > m_triggerThreshold;
-    }
-    /**
-     * Read the value of the right trigger (RT) button on the controller.
-     *
-     * @return The axis of the trigger is greater than the trigger threshold
-     */
-    public boolean getRightTrigger(){
-        return getRightTriggerAxis() > m_triggerThreshold;
-    }
+    // public boolean getLeftTrigger(){ //TODO
+    //     return getLeftTriggerAxis() > m_triggerThreshold;
+    // }
+    // /**
+    //  * Read the value of the right trigger (RT) button on the controller.
+    //  *
+    //  * @return The axis of the trigger is greater than the trigger threshold
+    //  */
+    // public boolean getRightTrigger(){
+    //     return getRightTriggerAxis() > m_triggerThreshold;
+    // }
     /**
      * Get the button value (starting at button 1).
      *

@@ -18,20 +18,20 @@ import frc.robot.Subsystems.ImprovedCommandXboxController;
  */
 public final class Constants 
 {
-    public static final class SemiAutoConstants{
-        public static final double kSemiAutoVelocityP=2.6;//TODO
-        public static final double kSemiAutoVelocityI=0.00;//TODO
-        public static final double kSemiAutoVelocityD=0.0;//TODO
-        public static final Constraints kSemiAutoVelocityConstrants =new Constraints(1,2);//TODO
-          public static final double SemiAutoVelocitySlewRate=100;
-        public static final double SemiAutoVelocityMax=1.5;
-        public static final double kSemiAutoOmegaP=6;//TODO
-        public static final double kSemiAutoOmegaI=0.0;//TODO
-        public static final double kSemiAutoOmegaD=0.0;//TODO
-        public static final Constraints kSemiAutoOmegaConstrants =new Constraints(2,100);//TODO
-        public static final double SemiAutoOmegaSlewRate=100;
-        public static final double SemiAutoOmegaMax=3;
-    }
+    // public static final class SemiAutoConstants{
+    //     public static final double kSemiAutoVelocityP=2.6;//TODO
+    //     public static final double kSemiAutoVelocityI=0.00;//TODO
+    //     public static final double kSemiAutoVelocityD=0.0;//TODO
+    //     public static final Constraints kSemiAutoVelocityConstrants =new Constraints(1,2);//TODO
+    //       public static final double SemiAutoVelocitySlewRate=100;
+    //     public static final double SemiAutoVelocityMax=1.5;
+    //     public static final double kSemiAutoOmegaP=6;//TODO
+    //     public static final double kSemiAutoOmegaI=0.0;//TODO
+    //     public static final double kSemiAutoOmegaD=0.0;//TODO
+    //     public static final Constraints kSemiAutoOmegaConstrants =new Constraints(2,100);//TODO
+    //     public static final double SemiAutoOmegaSlewRate=100;
+    //     public static final double SemiAutoOmegaMax=3;
+    // }
 
     public static final class GlobalConstants {
         public static final double kLoopTime = 0.020;
@@ -107,7 +107,7 @@ public final class Constants
         public static double kDriveMotorIZone = 0;// 90          240
         public static double kSensorVelocityMeasPeriod = 10;
     
-        public static double kPivotMotorkP = 6;//3
+        public static double kPivotMotorkP = 3;//3
         public static double kPivotMotorkI = 0;
         public static double kPivotMotorkD = 100.;//100
         public static double kPivotMotorF = 0;
@@ -136,7 +136,7 @@ public final class Constants
     
         public static double kPeriod = 20;//The unit is 20_ms
     
-        public static double kMaxSpeed = 0.;//TODO: 5. The unit is meters per second 每个轮子的可以达到的最大转速，单位是m/s
+        public static double kMaxSpeed = 5.;//TODO: 5. The unit is meters per second 每个轮子的可以达到的最大转速，单位是m/s
     
        
         public static final BetterSwerveKinematics swerveKinematics = new BetterSwerveKinematics(//define the position of each swervemodule by creating a coordinate system

@@ -6,11 +6,11 @@ package frc.robot;
 
 import frc.robot.Commands.SwerveControl.SwerveControll;
 import frc.robot.Subsystems.*;
+import frc.robot.Subsystems.ImprovedCommandXboxController;
 
 public class RobotContainer {
   public static SwerveDriveTrain m_swerve = SwerveDriveTrain.getInstance();
-  public static ImprovedCommandXboxController m_driverController= new ImprovedCommandXboxController(0, 0.3);
-  
+  public static ImprovedCommandXboxController m_driverController= new ImprovedCommandXboxController(0);
   public RobotContainer() {
     configureBindings();
     

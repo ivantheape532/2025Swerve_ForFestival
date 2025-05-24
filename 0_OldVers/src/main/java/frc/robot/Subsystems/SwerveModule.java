@@ -46,7 +46,7 @@ public class SwerveModule extends SubsystemBase {
 
   private int offset_;
 
-  private double drive_motor_inverted = 1.0;
+  private double drive_motor_inverted = 1.0; //TODO: Check if this is correct
   private double pivot_motor_inverted = 1.0;
   private boolean drive_motor_output_enabled = true;
   private boolean pivot_motor_output_enabled = true;
@@ -57,7 +57,7 @@ public class SwerveModule extends SubsystemBase {
                       int pivotEncoderOffset, boolean pivotEncoderPhase,
                       boolean pivotEncoderInvert) {
     drive_motor_ = new TalonFX(driveDeviceNumber);
-    pivot_motor_ = new WPI_TalonSRX(pivotDeviceNumber); 
+    pivot_motor_ = new TalonSRX(pivotDeviceNumber); 
 
     drive_motor_.setNeutralMode(NeutralModeValue.Brake);
     pivot_motor_.setNeutralMode(NeutralMode.Coast);

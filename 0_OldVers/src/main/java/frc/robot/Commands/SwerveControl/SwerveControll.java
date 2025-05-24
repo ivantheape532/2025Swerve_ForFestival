@@ -21,19 +21,19 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class SwerveControll extends Command {
   /** Creates a new SwerveControll. */
   //double storedYaw;
-  private boolean fieldOrient = true;
+  private boolean fieldOrient = true; //true
   //That means the joystick will reach the max range in 1/3 second
   //The may let the robot move smoothly.
   private final SlewRateLimiter m_slewX = new SlewRateLimiter(DriveConstants.kTranslationSlew);
   private final SlewRateLimiter m_slewY = new SlewRateLimiter(DriveConstants.kTranslationSlew);
   private final SlewRateLimiter m_slewRot = new SlewRateLimiter(DriveConstants.kRotationSlew);
   
-  //private double rotation;
-  //private Translation2d translation;
+  // private double rotation;
+  // private Translation2d translation;
   //That means reaching the max speed will take 1/3 seconds.The max Liner Speed is 4m/s. Omega is 
-  //private SlewRateLimiter xSpeedLimiter = new SlewRateLimiter(Constants.linarslewrate * Constants.kMaxSpeed);
-  //private SlewRateLimiter ySpeedLimiter = new SlewRateLimiter(Constants.linarslewrate * Constants.kMaxSpeed);
-  //private SlewRateLimiter omegaSpeedLimiter = new SlewRateLimiter(Constants.omegaslewrate * Constants.kMaxOmega);
+  // private SlewRateLimiter xSpeedLimiter = new SlewRateLimiter(Constants.linarslewrate * Constants.kMaxSpeed);
+  // private SlewRateLimiter ySpeedLimiter = new SlewRateLimiter(Constants.linarslewrate * Constants.kMaxSpeed);
+  // private SlewRateLimiter omegaSpeedLimiter = new SlewRateLimiter(Constants.omegaslewrate * Constants.kMaxOmega);
 
   public SwerveControll() {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -43,123 +43,146 @@ public class SwerveControll extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    //storedYaw = RobotContainer.m_swerve.GetYaw();
+    // storedYaw = RobotContainer.m_swerve.GetYaw();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {
-    double translationX = -inputTransform(RobotContainer.m_driverController.getLeftY());
-    double translationY = -inputTransform(RobotContainer.m_driverController.getLeftX());
-    double rotationNew = -inputTransform(RobotContainer.m_driverController.getRightX());
-    
-    Translation2d translation = new Translation2d(m_slewX.calculate(
-      translationX) * SwerveConstants.kMaxSpeed,
-        m_slewY.calculate(translationY) * SwerveConstants.kMaxSpeed);
-    if(DriverStation.getAlliance().get()==Alliance.Red)
-    {
-      translation=translation.unaryMinus();
-    }
+public void execute() {
+    // 获取左摇杆的输入，用于控制移动
+    double translationX = -inputTransform(RobotContainer.m_driverController.getLeftY()); // 前后移动
+    double translationY = -inputTransform(RobotContainer.m_driverController.getLeftX()); // 左右移动
+
+    // 获取右摇杆的输入，用于控制旋转
+    double rotationNew = -inputTransform(RobotContainer.m_driverController.getRightX()); // 旋转
+
+    // 使用 SlewRateLimiter 平滑控制输入
+    Translation2d translation = new Translation2d(
+        m_slewX.calculate(translationX) * SwerveConstants.kMaxSpeed,
+        m_slewY.calculate(translationY) * SwerveConstants.kMaxSpeed
+    );
+
+    // 调用驱动方法，传入平滑后的移动和旋转值
     RobotContainer.m_swerve.Drive(
         translation,
         m_slewRot.calculate(rotationNew) * DriveConstants.kMaxAngularSpeed,
-        fieldOrient,
-        RobotContainer.m_swerve.isOpenLoop);
-
-    /**
-     * The methods below are a try based on 1678's swerve control
-     */
-      
-    /*double llastx = RobotContainer.m_swerve.deadband(RobotContainer.m_driverController.getLeftY());
-    double llasty = RobotContainer.m_swerve.deadband(RobotContainer.m_driverController.getLeftX());
-    double llastz = RobotContainer.m_swerve.deadband(RobotContainer.m_driverController.getRightX());
-
-    double yaw = RobotContainer.m_swerve.GetYaw();
-    double yawCorrection = 0;
-
-    //storedYaw = yaw; //This may be a bug!*/
-
-    /*if(llastz != 0){
-      storedYaw = yaw;
-    }
-    else{
-      if(Math.abs(llastx) > 0|| Math.abs(llasty) > 0){
-        yawCorrection = RobotContainer.m_swerve.calcYawStraight(storedYaw, yaw, 0.01, 0);
-      }
-    }*/
-
-    /*RobotContainer.m_swerve.Drive(
-      - RobotContainer.m_swerve.deadband(llastx) * Constants.kMaxSpeed, 
-      - RobotContainer.m_swerve.deadband(llasty) * Constants.kMaxSpeed, 
-      -  (llastz + yawCorrection) * Constants.kMaxOmega, //Add Drive straight mode
-      true);*/
+        fieldOrient, // 是否使用场地方向
+        RobotContainer.m_swerve.isOpenLoop // 是否为开环控制
+    );
+}
+  // @Override
+  // public void execute() {
+  //   double translationX = -inputTransform(RobotContainer.m_driverController.getLeftY());
+  //   double translationY = -inputTransform(RobotContainer.m_driverController.getLeftX());
+  //   double rotationNew = -inputTransform(RobotContainer.m_driverController.getRightX());
     
-    //SmartDashboard.putNumber("yaw", yaw);
-    //SmartDashboard.putNumber("storedyaw", storedYaw);
-    //SmartDashboard.putNumber("llastz", llastz);
-    /*SmartDashboard.putNumber("yawcorrection", yawCorrection);
-    SmartDashboard.putBoolean("WhetherStroeYaw", RobotContainer.m_swerve.whetherstoreyaw);
+  //   Translation2d translation = new Translation2d(m_slewX.calculate(
+  //     translationX) * SwerveConstants.kMaxSpeed,
+  //       m_slewY.calculate(translationY) * SwerveConstants.kMaxSpeed);
+  //   if(DriverStation.getAlliance().get()==Alliance.Red)
+  //   {
+  //     translation=translation.unaryMinus();
+  //   }
+  //   RobotContainer.m_swerve.Drive(
+  //       translation,
+  //       m_slewRot.calculate(rotationNew) * DriveConstants.kMaxAngularSpeed,
+  //       fieldOrient,
+  //       RobotContainer.m_swerve.isOpenLoop);
 
-    //Try to optimize the input
-    double yAxis;
-    double xAxis;
-    double rAxis;
+  //   /**
+  //    * The methods below are a try based on 1678's swerve control
+  //    */
+      
+  //   /*double llastx = RobotContainer.m_swerve.deadband(RobotContainer.m_driverController.getLeftY());
+  //   double llasty = RobotContainer.m_swerve.deadband(RobotContainer.m_driverController.getLeftX());
+  //   double llastz = RobotContainer.m_swerve.deadband(RobotContainer.m_driverController.getRightX());
 
-    Translation2d tAxes; // translational axis*/
+  //   double yaw = RobotContainer.m_swerve.GetYaw();
+  //   double yawCorrection = 0;
 
-    /* Inversions */
-    /*yAxis = -RobotContainer.m_driverController.getLeftY();
-    xAxis = -RobotContainer.m_driverController.getLeftX();
-    rAxis = RobotContainer.m_driverController.getRightX();*/
+  //   //storedYaw = yaw; //This may be a bug!*/
 
-    /* Deadbands */
-    /*tAxes = applyTranslationalDeadband(new Translation2d(yAxis, xAxis));
-    rAxis = applyRotationalDeadband(rAxis);
+  //   /*if(llastz != 0){
+  //     storedYaw = yaw;
+  //   }
+  //   else{
+  //     if(Math.abs(llastx) > 0|| Math.abs(llasty) > 0){
+  //       yawCorrection = RobotContainer.m_swerve.calcYawStraight(storedYaw, yaw, 0.01, 0);
+  //     }
+  //   }*/
 
-    translation = new Translation2d(tAxes.getX(), tAxes.getY()).times(Constants.kMaxSpeed);
-    rotation = rAxis * Constants.kMaxOmega;*/
+  //   /*RobotContainer.m_swerve.Drive(
+  //     - RobotContainer.m_swerve.deadband(llastx) * Constants.kMaxSpeed, 
+  //     - RobotContainer.m_swerve.deadband(llasty) * Constants.kMaxSpeed, 
+  //     -  (llastz + yawCorrection) * Constants.kMaxOmega, //Add Drive straight mode
+  //     true);*/
+    
+  //   //SmartDashboard.putNumber("yaw", yaw);
+  //   //SmartDashboard.putNumber("storedyaw", storedYaw);
+  //   //SmartDashboard.putNumber("llastz", llastz);
+  //   /*SmartDashboard.putNumber("yawcorrection", yawCorrection);
+  //   SmartDashboard.putBoolean("WhetherStroeYaw", RobotContainer.m_swerve.whetherstoreyaw);
 
-    /*rotation = (rAxis + yawCorrection) * Constants.kMaxOmega;*/
+  //   //Try to optimize the input
+  //   double yAxis;
+  //   double xAxis;
+  //   double rAxis;
 
-    /*RobotContainer.m_swerve.Drive(
-        translation,
-        -(llastz + yawCorrection) * Constants.kMaxOmega,
-        true,
-        RobotContainer.m_swerve.isOpenLoop);*/
+  //   Translation2d tAxes; // translational axis*/
 
-    /*if(RobotContainer.m_swerve.whetherstoreyaw || llastz != 0){
-      storedYaw = yaw;
-    }else{
-      if(Math.abs(llastx) > 0|| Math.abs(llasty) > 0){
-        yawCorrection = RobotContainer.m_swerve.calcYawStraight(storedYaw, yaw, 0.01, 0);
-      }
-    }*/
+  //   /* Inversions */
+  //   /*yAxis = -RobotContainer.m_driverController.getLeftY();
+  //   xAxis = -RobotContainer.m_driverController.getLeftX();
+  //   rAxis = RobotContainer.m_driverController.getRightX();*/
 
-    /*if(RobotContainer.m_swerve.whetherstoreyaw || rotation != 0){
-      storedYaw = yaw;
-    }else{
-      if(Math.abs(tAxes.getX()) > 0|| Math.abs(tAxes.getY()) > 0){
-        yawCorrection = RobotContainer.m_swerve.calcYawStraight(storedYaw, yaw, 0.01, 0);
-      }
-    }*/
+  //   /* Deadbands */
+  //   /*tAxes = applyTranslationalDeadband(new Translation2d(yAxis, xAxis));
+  //   rAxis = applyRotationalDeadband(rAxis);
+
+  //   translation = new Translation2d(tAxes.getX(), tAxes.getY()).times(Constants.kMaxSpeed);
+  //   rotation = rAxis * Constants.kMaxOmega;*/
+
+  //   /*rotation = (rAxis + yawCorrection) * Constants.kMaxOmega;*/
+
+  //   /*RobotContainer.m_swerve.Drive(
+  //       translation,
+  //       -(llastz + yawCorrection) * Constants.kMaxOmega,
+  //       true,
+  //       RobotContainer.m_swerve.isOpenLoop);*/
+
+  //   /*if(RobotContainer.m_swerve.whetherstoreyaw || llastz != 0){
+  //     storedYaw = yaw;
+  //   }else{
+  //     if(Math.abs(llastx) > 0|| Math.abs(llasty) > 0){
+  //       yawCorrection = RobotContainer.m_swerve.calcYawStraight(storedYaw, yaw, 0.01, 0);
+  //     }
+  //   }*/
+
+  //   /*if(RobotContainer.m_swerve.whetherstoreyaw || rotation != 0){
+  //     storedYaw = yaw;
+  //   }else{
+  //     if(Math.abs(tAxes.getX()) > 0|| Math.abs(tAxes.getY()) > 0){
+  //       yawCorrection = RobotContainer.m_swerve.calcYawStraight(storedYaw, yaw, 0.01, 0);
+  //     }
+  //   }*/
   
-    //SmartDashboard.putNumber("X Controller Input", translation.getX());
-    //SmartDashboard.putNumber("Y Controller Input", translation.getY());
-    //SmartDashboard.putNumber("Rot Controller Input", rotation);
-    //SmartDashboard.putNumber("storedYaw", storedYaw);
-    //SmartDashboard.putNumber("origin_yaw", yaw);
+  //   //SmartDashboard.putNumber("X Controller Input", translation.getX());
+  //   //SmartDashboard.putNumber("Y Controller Input", translation.getY());
+  //   //SmartDashboard.putNumber("Rot Controller Input", rotation);
+  //   //SmartDashboard.putNumber("storedYaw", storedYaw);
+  //   //SmartDashboard.putNumber("origin_yaw", yaw);
 
-  }
+  // }
 
-  // Called once the command ends or is interrupted.
-  @Override
-  public void end(boolean interrupted) {}
+  // // Called once the command ends or is interrupted.
+  // @Override
+  // public void end(boolean interrupted) {}
 
-  // Returns true when the command should end.
-  @Override
-  public boolean isFinished() {
-    return false;
-  }
+  // // Returns true when the command should end.
+  // @Override
+  // public boolean isFinished() {
+  //   return false;
+  // }
 
   /**
    * when this fucntion of the command is called the current fieldOrient boolean
