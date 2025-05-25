@@ -9,8 +9,8 @@ public final class Constants {
         public static final double WHEEL_CIRCUMFERENCE = WHEEL_DIAMETER * Math.PI;
         
         // Swerve module constants
-        public static final double DRIVE_GEAR_RATIO = 6.75; // SDS Mk4i L2 ratio
-        public static final double ANGLE_GEAR_RATIO = 12.8;
+        public static final double DRIVE_GEAR_RATIO = 29./15.*60./15.; // SDS Mk4i L2 ratio
+        public static final double ANGLE_GEAR_RATIO = 56./6.*60./10.;
         public static final double DRIVE_METERS_PER_TICK = WHEEL_CIRCUMFERENCE / (DRIVE_GEAR_RATIO * 2048);
         public static final double ANGLE_DEGREES_PER_TICK = 360.0 / (ANGLE_GEAR_RATIO * 2048);
         
@@ -52,7 +52,7 @@ public final class Constants {
     }
     
     public static final class OIConstants {
-        public static final int DRIVER_CONTROLLER_PORT = 0; // 驱动控制器端口
+        // public static final int port = 0; // 驱动控制器端口
         public static final double DEADBAND = 0.1; //死区
     }
 }

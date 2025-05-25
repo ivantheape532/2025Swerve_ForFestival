@@ -106,7 +106,7 @@ public class SwerveDriveTrain extends SubsystemBase {
 
      //TODO:Check if all ports are correct.
     swerve_modules_[0] = new SwerveModule(3, 4, true,  false, -1660,  false, false);//front left
-    swerve_modules_[1] = new SwerveModule(7, 8, true, false, 165, true, true);//front right
+    swerve_modules_[1] = new SwerveModule(7, 8, true, false, -1771, true, true);//front right //TODO:165
     swerve_modules_[2] =new SwerveModule(5, 6, true, false, 1011,  false, false);//back left
     swerve_modules_[3] = new SwerveModule(1, 2, false,  false, -1771, true, true); //back right
     
@@ -151,7 +151,6 @@ public class SwerveDriveTrain extends SubsystemBase {
  * 这个是为了兼容旧代码蔡保留的，晚点删掉
  * 
  *  TODO(zyf): 所以我怎么改？ ——zyf 2025.5.7
- *  TODO(zyf): 貌似不用改了 能动。 ——zyf 2025.5.7
  * @param desiredStates
  */
   public void SetModuleStates(SwerveModuleState[] desiredStates){
@@ -168,6 +167,7 @@ public class SwerveDriveTrain extends SubsystemBase {
 
       /**
        * TODO: * What the module states should be in hold mode. The wheels will be put in an X pattern to prevent the robot from moving.
+       * //TODO: What is hold mode? ——zyf 2025.5.25
      * <p>
      * 0 -> Left Front
      * <p>
@@ -178,38 +178,38 @@ public class SwerveDriveTrain extends SubsystemBase {
      * 3 -> Right Back
      */
 
-    public static final SwerveModuleState[] HOLD_MODULE_STATES = {
-      new SwerveModuleState(0, Rotation2d.fromDegrees(-45)),
-      new SwerveModuleState(0, Rotation2d.fromDegrees(-45)),
-      new SwerveModuleState(0, Rotation2d.fromDegrees(45)),
-      new SwerveModuleState(0, Rotation2d.fromDegrees(45))
-  };
-  /**
-  * What the module states should be set to when we start climbing. All the wheels will face forward to make the robot easy to
-  * push once it is disabled.
-  * <p>
-  * 0 -> Left Front
-  * <p>
-  * 1 -> Left Back
-  * <p>
-  * 2 -> Right Front
-  * <p>
-  * 3 -> Right Back
-  */
-  public static final SwerveModuleState[] SWERVE_MODULE_STATE_FORWARD = {
-        new SwerveModuleState(0, Rotation2d.fromDegrees(90)),
-        new SwerveModuleState(0, Rotation2d.fromDegrees(90)),
-        new SwerveModuleState(0, Rotation2d.fromDegrees(90)),
-        new SwerveModuleState(0, Rotation2d.fromDegrees(90))
-  };
+    // public static final SwerveModuleState[] HOLD_MODULE_STATES = { //TODO
+    //   new SwerveModuleState(0, Rotation2d.fromDegrees(-45)),
+    //   new SwerveModuleState(0, Rotation2d.fromDegrees(-45)),
+    //   new SwerveModuleState(0, Rotation2d.fromDegrees(45)),
+    //   new SwerveModuleState(0, Rotation2d.fromDegrees(45))
+  // };
+  // /**
+  // * What the module states should be set to when we start climbing. All the wheels will face forward to make the robot easy to
+  // * push once it is disabled.
+  // * <p>
+  // * 0 -> Left Front
+  // * <p>
+  // * 1 -> Left Back
+  // * <p>
+  // * 2 -> Right Front
+  // * <p>
+  // * 3 -> Right Back
+  // */
+  // public static final SwerveModuleState[] SWERVE_MODULE_STATE_FORWARD = {
+  //       new SwerveModuleState(0, Rotation2d.fromDegrees(90)),
+  //       new SwerveModuleState(0, Rotation2d.fromDegrees(90)),
+  //       new SwerveModuleState(0, Rotation2d.fromDegrees(90)),
+  //       new SwerveModuleState(0, Rotation2d.fromDegrees(90))
+  // };
 
-  public void setSWERVE_MODULE_STATE_FORWARD(){
-    // SetModuleStates(SWERVE_MODULE_STATE_FORWARD); //TODO
-  }
+  // public void setSWERVE_MODULE_STATE_FORWARD(){
+  //   // SetModuleStates(SWERVE_MODULE_STATE_FORWARD); //TODO
+  // }
 
-  public void setHOLD_MODULE_STATES(){
-    SetModuleStates(HOLD_MODULE_STATES);  //TODO
-  }
+  // public void setHOLD_MODULE_STATES(){
+  //   SetModuleStates(HOLD_MODULE_STATES);  //TODO
+  // }
 
     /**
      * Returns the currently-estimated pose of the robot.
