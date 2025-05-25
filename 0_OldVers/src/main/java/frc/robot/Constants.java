@@ -46,13 +46,13 @@ public final class Constants
                                                                // but spinning fast is not particularly useful or driver
                                                                // friendly
 
-        public static final double kInnerDeadband = 0.10; // This value should exceed the maximum value the analog stick may
+        public static final double kInnerDeadband = 0.1; //TODO:0.1 // This value should exceed the maximum value the analog stick may
                                                           // read when not in use (Eliminates "Stick Drift")
-        public static final double kOuterDeadband = 0.98; // This value should be lower than the analog stick X or Y reading
+        public static final double kOuterDeadband = 0.98; //TODO:0.98 // This value should be lower than the analog stick X or Y reading
                                                           // when aimed at a 45deg angle (Such that X and Y are are
                                                           // maximized simultaneously)
-        public static final double kTranslationSlew = 20.0;
-        public static final double kRotationSlew = 10;
+        public static final double kTranslationSlew = 10.0; //TODO:20.0
+        public static final double kRotationSlew = 5;  //TODO:10
 
         public static final double kPositionTolerance = 0.05;    //TODO
         public static final double kRotationTolerance = 0.0;    //TODO
@@ -69,21 +69,21 @@ public final class Constants
         
         /* Drive Motor Characterization Values */
         public static final double driveKS = (0.69552 / 12); //divide by 12 to convert from volts to percent output for CTRE
-        public static final double driveKV = (2.8378 / 12);
+        public static final double driveKV = (2.8378 / 12); //TODO:2.8378 / 12
         public static final double driveKA = (0.44473 / 12);
 
-        public static final double piviotKS = (1.322); //divide by 12 to convert from volts to percent output for CTRE
+        public static final double piviotKS = (1.322); //TODO:1.322 divide by 12 to convert from volts to percent output for CTRE
         public static final double piviotKV = (0.0052807);
         public static final double piviotKA = (0.44473 / 12);
 
         // Pigeon Port
         public static final int PigeonIMUPort = 0;
 
-        public static double kDriveMotorMaxOutput = 0.5; //TODO:1 0.5
-        public static double kPivotMotorMaxOutput = 0.1; //TODO:1 0.1
+        public static double kDriveMotorMaxOutput = 1; //TODO:1 0.5
+        public static double kPivotMotorMaxOutput = 1; //TODO:1 0.1
     
         public static double kDriveMotorNeutralDeadband = 0;
-        public static double kPivotMotorNeutralDeadband = 0;
+        public static double kPivotMotorNeutralDeadband = 1; //TODO:0
         
         public static double VelocityCorrectionFactor = 0.5;//TODO
         /**
@@ -107,7 +107,7 @@ public final class Constants
         public static double kDriveMotorIZone = 0;// 90          240
         public static double kSensorVelocityMeasPeriod = 10;
     
-        public static double kPivotMotorkP = 3;//3
+        public static double kPivotMotorkP = 2;//3
         public static double kPivotMotorkI = 0;
         public static double kPivotMotorkD = 100.;//100
         public static double kPivotMotorF = 0;

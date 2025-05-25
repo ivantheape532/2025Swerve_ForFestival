@@ -27,8 +27,7 @@ public class SwerveModule {
     private final PIDController anglePIDController;
     private final String name;
     private final double angleOffset;
-
-    
+  
   private Slot0Configs m_drive_slot0Configs = new Slot0Configs();
     
     public SwerveModule(int driveMotorID, int angleMotorID, int encoderPort, double angleOffset, String name) {
